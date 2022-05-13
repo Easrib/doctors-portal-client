@@ -5,14 +5,37 @@ import cavity from '../../assets/images/cavity.png'
 import whitening from '../../assets/images/whitening.png'
 
 const Services = () => {
+    const services = [
+        {
+            _id: 1,
+            name: 'Fluoride Treatment',
+            description: 'lorem',
+            img: fluoride
+        },
+        {
+            _id: 2,
+            name: 'Cavity Filling',
+            description: 'lorem',
+            img: cavity
+        },
+        {
+            _id: 3,
+            name: 'Teeth Whitening',
+            description: 'lorem',
+            img: whitening
+        }
+    ]
     return (
-        <div class='mt-4'>
-            <h4 class='text-primary text-center'>Our Services</h4>
-            <h2 class='text-primary text-center'>Services We Provide</h2>
-            <div class='grid grid-cols-1 lg:grid-cols-3 gap-5 px-12'>
-                <Servicecard image={fluoride} cardTitle='Fluoride Treatment'></Servicecard>
-                <Servicecard image={cavity} cardTitle='Cavity Filling'></Servicecard>
-                <Servicecard image={whitening} cardTitle=''></Servicecard>
+        <div className='mt-4'>
+            <h4 className='text-primary text-center font-bold text-xl'>Our Services</h4>
+            <h2 className='text-center text-4xl'>Services We Provide</h2>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center'>
+                {
+                    services.map(service => <Servicecard
+                        key={service._id}
+                        service={service}
+                    ></Servicecard>)
+                }
             </div>
         </div >
     );

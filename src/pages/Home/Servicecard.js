@@ -1,14 +1,16 @@
 import React from 'react';
 
-const Servicecard = ({ image }) => {
+const Servicecard = ({ service }) => {
+
+    const { img, description, name } = service
     return (
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card w-60 md:w-80 lg:w-96 bg-base-100 shadow-xl">
             <figure class="px-10 pt-10">
-                <img src={image} alt="Shoes" class="rounded-xl" />
+                <img src={img} alt="Shoes" class="rounded-xl" />
             </figure>
             <div class="card-body items-center text-center">
-                <h2 class="card-title">Shoes!</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <h2 class="card-title">{name}</h2>
+                <p>{description}</p>
             </div>
         </div>
     );
