@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const Login = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
     const [
         signInWithEmailAndPassword,
         user,
@@ -21,6 +22,7 @@ const Login = () => {
 
     if (guser || user) {
         console.log(guser);
+        navigate('/appointment')
     }
     let signInError;
 
@@ -36,7 +38,7 @@ const Login = () => {
         <div className='flex h-screen  justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="card-title text-2xl font-bold">Login</h2>
+                    <h2 className="card-title text-2xl text-center font-bold">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
