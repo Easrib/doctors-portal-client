@@ -9,6 +9,8 @@ import Footer from './pages/Shared/Footer';
 import Appointment from './pages/Appointment/Appointment';
 import Signup from './pages/Login/Signup';
 import RequireAuth from './pages/Login/RequireAuth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           </RequireAuth>
         }></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
