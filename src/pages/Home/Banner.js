@@ -7,7 +7,7 @@ const Banner = () => {
         <div style={{
             background: `url(${background})`,
             backgroundSize: 'cover'
-        }} className="hero min-h-screen">
+        }} className="hero min-h-[80vh]">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <img src={chair} className="max-w-sm rounded-lg shadow-2xl" />
                 <div>

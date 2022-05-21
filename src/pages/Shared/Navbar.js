@@ -8,13 +8,17 @@ const Navbar = () => {
     const [user, loading, error] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken')
     }
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/appointment'>Appointment</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
-        <li><Link to='/contact'>Contact Us</Link></li>
+        <li><Link to='/contact'>Contact</Link></li>
+        {
+            user && <li><Link to='/dashboard'>Dashboard</Link></li>
+        }
         <li>{user ? <button onClick={logout} className="btn btn-active btn-ghost">Sign Out</button> : <Link to='/login'>Log in</Link>}</li>
     </>
     return (
@@ -34,6 +38,9 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     {menuItems}
                 </ul>
+            </div>
+            <div>
+                <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
             </div>
         </div>
     );

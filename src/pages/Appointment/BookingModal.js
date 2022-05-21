@@ -1,11 +1,11 @@
 import { format } from 'date-fns';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const BookingModal = ({ treatment, date, setTreatment }) => {
+const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
 
     const { _id, name, slots } = treatment;
     const [user, loading, error] = useAuthState(auth);
@@ -36,9 +36,9 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
                 if (data.success) {
                     toast(`Your booking is set at ${formatedDate} on ${slot}`)
                 } else {
-                    toast.error(`You already booked appointment at ${data.booking.date} on ${data.booking.slot}`)
+                    toast.error(`You already booked appointment on ${data.booking.date} at ${data.booking.slot}`)
                 }
-
+                refetch()
                 // to close the modal 
                 setTreatment(null)
 
@@ -54,7 +54,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="font-bold text-center text-lg">Booking for : {name} </h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-2 mt-2 justify-items-center'>
-                        <input type="text" disabled defaultValue={format(date, 'PP')} className="input input-bordered  w-full max-w-xs" />
+                        <input type="text" disabled value={format(date, 'PP')} className="input input-bordered  w-full max-w-xs" />
                         <select name='slot' className="select select-bordered w-full max-w-xs">
                             {
                                 slots.map((slot, index) => <option
