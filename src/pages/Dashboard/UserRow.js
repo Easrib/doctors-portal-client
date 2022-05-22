@@ -5,17 +5,18 @@ const UserRow = ({ user, refetch }) => {
 
     const { email, role } = user;
     const makeAdmin = () => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://desolate-plateau-79254.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => {
-                if(res.status === 403){
+                if (res.status === 403) {
                     toast.error('Failed to make an admin')
                 }
-               return res.json()})
+                return res.json()
+            })
             .then(data => {
                 if (data.modifiedCount > 0) {
                     refetch();
